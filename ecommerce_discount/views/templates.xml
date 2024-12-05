@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="product_price_with_discount" inherit_id="website_sale.product_price">
+        <xpath expr="//div" position="replace">
+            <div class="product_price">
+                <t t-if="product.discount_percentage > 0">
+                    <h3>
+                        <!-- Show original price as strikethrough -->
+                        <span class="text-muted" style="text-decoration: line-through;">
+                            <t t-esc="product.list_price"/>
+                            <t t-esc="product.currency_id.symbol"/>
+                        </span>
+                        <!-- Show discounted price -->
+                        <span class="text-success">
+                            <t t-esc="product.discounted_price"/>
+                             <t t-esc="product.currency_id.symbol"/>
+                        </span>
+                    </h3>
+                </t>
+                <t t-else="">
+                    <h3>
+                        <!-- Show only original price -->
+                        <span>
+                            <t t-esc="product.list_price"/>
+                             <t t-esc="product.currency_id.symbol"/>
+                        </span>
+                    </h3>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
